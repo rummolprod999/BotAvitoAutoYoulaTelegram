@@ -1,6 +1,7 @@
 import base64
 import logging
 import random
+import re
 import sqlite3
 import time
 import urllib
@@ -166,6 +167,7 @@ class Avito(TelegramBot.TelegramBot):
                             lxml.html.etree.tostring(post,
                                                      pretty_print=True,
                                                      encoding='unicode')))
+        price = re.sub(r'\s+', '', price)
         desc = ''
         try:
             desc = post.xpath('.//span[@class = \'param\']')[0].text.strip(' \t\n')

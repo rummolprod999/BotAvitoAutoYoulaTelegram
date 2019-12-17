@@ -19,7 +19,7 @@ import Url
 
 class Avito(TelegramBot.TelegramBot):
     XPATH_AVITO = '//div[@id and not(contains(@id, \'ads\'))][@data-type]'
-    LIST_PAGE = [Url.Url('https://www.avito.ru/klintsy/bytovaya_elektronika?s_trg=5',
+    LIST_PAGE = [Url.Url('https://www.avito.ru/klintsy/bytovaya_elektronika?geoCoords=52.752811%2C32.234301&radius=5',
                          '#Бытовая_электроника')]
     driver = None
 
@@ -125,13 +125,13 @@ class Avito(TelegramBot.TelegramBot):
         url_av = 'https://www.avito.ru' + url_av
         title = ''
         try:
-            title_av = post.xpath('.//a[@class = \'item-description-title-link\']/span')[0].text
+            title_av = post.xpath('.//a[@class = \'snippet-link\']')[0].get('title')
             title = title_av.strip(' \t\n')
         except Exception:
             pass
         city = ''
         try:
-            city_av = post.xpath('.//div[@class = \'data\']/p[last()]')[0].text
+            city_av = post.xpath('.//span[@class = \'item-address__string\']')[0].text
             city = city_av.strip(' \t\n')
         except Exception:
             try:
@@ -167,7 +167,7 @@ class Avito(TelegramBot.TelegramBot):
                             lxml.html.etree.tostring(post,
                                                      pretty_print=True,
                                                      encoding='unicode')))
-        price = re.sub(r'\s+', '', price)
+        price = re.sub(r'\s+', ' ', price)
         desc = ''
         try:
             desc = post.xpath('.//span[@class = \'param\']')[0].text.strip(' \t\n')

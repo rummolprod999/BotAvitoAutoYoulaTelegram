@@ -189,7 +189,7 @@ class Youla(TelegramBot.TelegramBot):
         else:
             req = urllib.request.Request(url=url, headers={
                 'User-Agent': fake_useragent.UserAgent().random,
-                'Cookie': 'location=%7B%22isConfirmed%22%3Atrue%2C%22lat%22%3A52.7566164%2C%22lng%22%3A32.2566693%2C%22r%22%3A5000%2C%22title%22%3A%22%5Cu0411%5Cu0440%5Cu044f%5Cu043d%5Cu0441%5Cu043a%5Cu0430%5Cu044f+%5Cu043e%5Cu0431%5Cu043b%5Cu0430%5Cu0441%5Cu0442%5Cu044c%2C+%5Cu0420%5Cu043e%5Cu0441%5Cu0441%5Cu0438%5Cu044f+Klintsy%22%2C%22city%22%3Anull%2C%22cityLocation%22%3Afalse%2C%22pointLocation%22%3Atrue%2C%22defaultRadius%22%3Afalse%7D'}, )
+                'Cookie': 'location=%7B%22isConfirmed%22%3Atrue%2C%22lat%22%3A52.7585111%2C%22lng%22%3A32.2400969%2C%22r%22%3A5000%2C%22title%22%3A%22%5Cu041a%5Cu043b%5Cu0438%5Cu043d%5Cu0446%5Cu044b%22%2C%22city%22%3Anull%2C%22citySlug%22%3A%22all%22%2C%22cityLocation%22%3Afalse%2C%22pointLocation%22%3Atrue%2C%22defaultRadius%22%3Afalse%7D'}, )
             try:
                 handler = urllib.request.urlopen(req)
             except urllib.error.HTTPError as e:

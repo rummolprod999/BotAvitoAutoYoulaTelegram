@@ -6,7 +6,7 @@ import Tools
 
 class TelegramBot:
     def send_new_posts(self, item: Post):
-        last_price = "<i>Старая цена:</i> " + item.last_price + "\n" if item.last_price else ""
+        last_price = "<i>Изменение цены:</i> " + item.last_price + "\n" if item.last_price else ""
         phone = f"Телефон: {item.phone}\n" if item.phone else ""
         name = f"Имя: {item.user_name}\n" if item.user_name else ""
         place = f"<i>Местоположение:</i> {item.city}\n" if item.city else ""

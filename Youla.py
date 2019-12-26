@@ -111,10 +111,12 @@ class Youla(TelegramBot.TelegramBot):
         if not cursor.fetchone():
             try:
                 p.phone, p.user_name = ("", "")  # self.get_phone_num(i.url, p.id_elem)
-                cursor.execute("""SELECT price FROM avito WHERE id_av=? ORDER BY id DESC LIMIT 1""", (p.id_elem,))
-                res = cursor.fetchone()
+                cursor.execute("""SELECT price FROM avito WHERE id_av=? ORDER BY id DESC""", (p.id_elem,))
+                res = cursor.fetchmany()
                 if res:
-                    p.last_price = res[0]
+                    for r in res:
+                        p.last_price += f"{r[0]} -> "
+                    p.last_price += f"{p.price}"
             except Exception as exp:
                 logging.error(f'Exception of type {type(exp).__name__!s} in get_phone_num(): {exp}')
             try:

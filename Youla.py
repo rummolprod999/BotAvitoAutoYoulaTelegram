@@ -104,7 +104,7 @@ class Youla(TelegramBot.TelegramBot):
         except Exception:
             pass
         return Post.Post(url_av, price, desc, data, id_elem, title, city, type_url, "не удалось получить номер",
-                         "нет имени", None)
+                         "нет имени", "")
 
     def post_checker(self, conn, cursor, i, p: Post):
         cursor.execute("""SELECT id FROM avito WHERE id_av=? AND price=?""", (p.id_elem, p.price))
@@ -118,7 +118,7 @@ class Youla(TelegramBot.TelegramBot):
                         p.last_price += f"{r[0]} -> "
                     p.last_price += f"{p.price}"
             except Exception as exp:
-                logging.error(f'Exception of type {type(exp).__name__!s} in get_phone_num(): {exp}')
+                logging.error(f'Exception of type {type(exp).__name__!s} in post_checker(): {exp}')
             try:
                 self.send_new_posts(p)
             except Exception as ex:

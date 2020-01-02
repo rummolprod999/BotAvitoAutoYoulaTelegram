@@ -75,7 +75,7 @@ class Avito(TelegramBot.TelegramBot):
             try:
                 p.phone, p.user_name = ("", "")  # self.get_phone_num(i.url, p.id_elem)
                 cursor.execute("""SELECT price FROM avito WHERE id_av=? ORDER BY id DESC""", (p.id_elem,))
-                res = cursor.fetchmany()
+                res = cursor.fetchall()
                 if res:
                     for r in res:
                         p.last_price += f"{r[0]} -> "
